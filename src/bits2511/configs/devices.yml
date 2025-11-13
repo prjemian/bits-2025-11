@@ -92,10 +92,10 @@ hklpy2.creator:
 #   limits: [ -20, 255 ]
 
 ophyd.EpicsMotor:
-- {name: m1, prefix: gp:m1, labels: ["motor"]}
-- {name: m2, prefix: gp:m2, labels: ["motor"]}
-- {name: m3, prefix: gp:m3, labels: ["motor"]}
-- {name: m4, prefix: gp:m4, labels: ["motor"]}
+- {name: m1, prefix: "gp:m1", labels: ["motor"]}
+- {name: m2, prefix: "gp:m2", labels: ["motor"]}
+- {name: m3, prefix: "gp:m3", labels: ["motor"]}
+- {name: m4, prefix: "gp:m4", labels: ["motor"]}
 
 ophyd.EpicsSignal:
 - name: scan_id_epics
