@@ -13,13 +13,6 @@ Includes:
 import logging
 from pathlib import Path
 
-# special priority for hklpy2 and queueserver
-try:
-    import hklpy2  # noqa
-except (ImportError, ModuleNotFoundError) as exinfo:
-    print(f"hklpy2 problems: {exinfo}")
-    hklpy2 = None
-
 # ------ resume
 # Core Functions
 from apsbits.core.best_effort_init import init_bec_peaks
@@ -117,16 +110,21 @@ make_devices(clear=False, file="devices.yml", device_manager=instrument)
 if host_on_aps_subnet():
     make_devices(clear=False, file="devices_aps_only.yml", device_manager=instrument)
 
-if hklpy2 is not None:
+try:
     import gi
+    import hklpy2
+    from hklpy2.backends.hkl_soleil import libhkl
 
     version_md = RE.md["versions"]
     version_md["gi"] = gi.__version__  # ".".join(map(str, gi.version_info))
     # FIXME: gi._versions is a dict that does not validate in event_model
     # version_md["gi._versions"] = gi._versions
     version_md["hklpy2"] = hklpy2.__version__
-    version_md["libhkl"] = hklpy2.backends.hkl_soleil.libhkl.VERSION
+    version_md["libhkl"] = libhkl.VERSION
+
     make_devices(clear=False, file="diffractometers.yml", device_manager=instrument)
+except (ImportError, ModuleNotFoundError) as exinfo:
+    print(f"No hklpy2 diffractometers: {exinfo=}")
 
 # Setup baseline stream with connect=False is default
 # Devices with the label 'baseline' will be added to the baseline stream.
