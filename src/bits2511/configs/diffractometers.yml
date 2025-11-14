@@ -1,0 +1,31 @@
+# diffractometers
+# Trouble getting them to work in the queueserver
+
+hklpy2.creator:
+- name: sim4c
+  labels: [ "diffractometer" ]
+- name: fourc
+  prefix: "gp:"
+  reals:
+    th: m30
+    chi: m31
+    phi: m32
+    tth: m29
+  labels: [ "diffractometer" ]
+- name: simpsic
+  geometry: E6C
+  labels: [ "diffractometer" ]
+- name: psic
+  geometry: E6C
+  prefix: "gp:"
+  labels: [ "diffractometer" ]
+  reals:
+    mu: m23
+    eta: m24
+    chi: m25
+    phi: m26
+    nu: m27
+    delta: m28
+- name: simk6c
+  geometry: K6C
+  labels: [ "diffractometer" ]

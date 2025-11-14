@@ -13,6 +13,15 @@ repos:
       - id: trailing-whitespace
       - id: check-case-conflict
       - id: check-executables-have-shebangs
+  # Can't use isort here, it conflicts with ruff over
+  # blank lines between import blocks.  Instead, use
+  # command line before pre-commit:  isort --sl ./src
+  # - repo: https://github.com/pycqa/isort
+  #   rev: 5.13.2
+  #   hooks:
+  #     - id: isort
+  #       args:
+  #         - --sl
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.4.8
     hooks:
